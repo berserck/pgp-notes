@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>PgNotes</title>
+  <meta name="author" content="Pedro Parracho">
+  <meta name="description" content="Note taking application">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link href="css/normalize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet"> -->
+</head>
+
+<body>
+
+  <h1>Note</h1>
+
+  <form action="/action_page.php" target="_blank" class="note-form">
+    <textarea placeholder="Write a new note..." required name="new-note"></textarea>
+    <input value="Save Note" type="submit">
+  </form>
+
+  <h1>Saved Notes:</h1>
+  <ul id="saved_notes" class="notes">
+    <li>Loading Notes...</li>
+  </ul>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    const notesForm = document.querySelector('.note-form');
+    const notesArea = document.querySelector('.notes');
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    function addNote(e){
+      e.preventDefault();
+      const note = (this.querySelector('[name=new-note]')).value;
+      notes.push(note);
+      populateList(notes, notesArea);
+      localStorage.setItem('notes', JSON.stringify(notes));
+      this.reset();
+    }
+
+    function populateList(notes = [], notesList){
+        notesList.innerHTML = notes.map((note, i) => {
+            return `
+    <li>
+    <label for = "note${i}"> ${note}</label>
+    </li>
+`;
+        }).join('');
+    }
+
+    notesForm.addEventListener('submit', addNote);
+
+    populateList(notes, notesArea);
+  </script>
+</body>
+
+</html>
