@@ -38,7 +38,7 @@
       const note = (this.querySelector('[name=new-note]')).value;
       notes.push(note);
       populateList(notes, notesArea);
-      localStorage.setItem('notes', JSON.stringify(notes));
+      window.localStorage.setItem('notes', JSON.stringify(notes));
       this.reset();
     }
 
