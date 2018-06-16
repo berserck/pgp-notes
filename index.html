@@ -8,8 +8,7 @@
   <meta name="description" content="Note taking application">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- <link href="css/normalize.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet"> -->
+  <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +16,10 @@
   <h1>Note</h1>
 
   <form action="/action_page.php" target="_blank" class="note-form">
-    <textarea placeholder="Write a new note..." required name="new-note"></textarea>
+    <label for="new-note">New Note</label>
+    <br>
+    <textarea placeholder="Write a new note..." required name="new-note" class="note"></textarea>
+    <br>
     <input value="Save Note" type="submit">
   </form>
 
@@ -25,37 +27,17 @@
   <ul id="saved_notes" class="notes">
     <li>Loading Notes...</li>
   </ul>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <div class="footer">
+    <p>Last changed 2018.06.16 by Pedro Parracho</p>
+    <p>
+      <a href="https://www.toptal.com/designers/subtlepatterns/connected/">Background</a> licence
+      <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> - Subtle Patterns ©
+      <a href="https://www.toptal.com/designers"> Toptal Designers</a>
+    </p>
+  </div>
+
   <script src="js/script.js"></script>
-
-  <script>
-    const notesForm = document.querySelector('.note-form');
-    const notesArea = document.querySelector('.notes');
-    const notes = JSON.parse(localStorage.getItem('notes')) || [];
-
-    function addNote(e){
-      e.preventDefault();
-      const note = (this.querySelector('[name=new-note]')).value;
-      notes.push(note);
-      populateList(notes, notesArea);
-      window.localStorage.setItem('notes', JSON.stringify(notes));
-      this.reset();
-    }
-
-    function populateList(notes = [], notesList){
-        notesList.innerHTML = notes.map((note, i) => {
-            return `
-    <li>
-    <label for = "note${i}"> ${note}</label>
-    </li>
-`;
-        }).join('');
-    }
-
-    notesForm.addEventListener('submit', addNote);
-
-    populateList(notes, notesArea);
-  </script>
 </body>
 
 </html>

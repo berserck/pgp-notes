@@ -1,0 +1,20 @@
+
+body {
+    position: relative;
+    background: url("../img/light-grey-terrazzo.png");
+}
+
+.note {
+    width:  90vw;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #DCDCDC;
+    text-align: center;
+    font-size: x-small;
+    line-height: 0.6em;
+}
