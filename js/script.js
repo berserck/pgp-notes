@@ -11,14 +11,12 @@ function addNote(e){
     this.reset();
 }
 
+function addNoteToList(text, i){
+    return `<li key="${i}">${text}</li>`;
+}
+
 function populateList(notes = [], notesList){
-    notesList.innerHTML = notes.map((note, i) => {
-        return `
-<li>
-<label for = "note${i}"> ${note}</label>
-</li>
-`;
-    }).join('');
+    notesList.innerHTML = notes.map((note, i) => addNoteToList(note,i)).join('');
 }
 
 notesForm.addEventListener('submit', addNote);
